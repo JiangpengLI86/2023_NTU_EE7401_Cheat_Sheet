@@ -2,10 +2,10 @@
 
 ## Disclaimer
 
-Before diving into this treasure trove of condensed knowledge, a couple of friendly heads-ups: :bangbang:
+‼️ Before diving into this treasure trove of condensed knowledge, a couple of friendly heads-ups‼️:
 
 - **Examination Policy Check**: The world of academia is ever-evolving, and so are its rules. If you're gearing up for an exam, double-check if 'NTU EE7401 Probability and Random Processes' is still a restricted open-book exam. Policies have a knack for changing when you least expect them to.
-- **Mistakes? Could Be!**: As much as I'd like to claim perfection, I'm only human (shocking, I know!). So, there's a slim chance that this cheat sheet might harbor a few errors. I'm not responsible if they sneak into your answers, but hey, feel free to play the hero by pointing them out. Found a mistake? Open an issue, and let's squash those bugs together!
+- **Mistakes? Could Be!**: As much as I'd like to claim perfection, I'm only human. So, there's a slim chance that this cheat sheet might harbor a few errors. I'm not responsible if they sneak into your answers, but hey, feel free to play the hero by pointing them out. Found a mistake? Open an issue, and let's squash those bugs together!
 
 ## Project Description
 
@@ -29,7 +29,7 @@ Special thanks to Cao Zhi, my fellow PhD student in EEE at NTU. His invaluable h
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
 Remember, this cheat sheet is meant to be your study buddy, not a substitute for actual studying. Use it wisely, and may the odds be ever in your favor in your academic endeavors!
