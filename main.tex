@@ -1,0 +1,1039 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,top=1pt,bottom=2pt,left=1pt,right=1pt,marginparwidth=1pt,headheight=1pt]{geometry}
+
+\input{preamble.tex}
+
+\usepackage{blindtext}
+\usepackage{multicol}
+\usepackage{color}
+\setlength{\columnsep}{0.2cm}
+\setlength{\columnseprule}{1pt}
+\def\columnseprulecolor{\color{blue}}
+
+\usepackage{xpatch}
+\xpatchcmd{\NCC@ignorepar}{%
+\abovedisplayskip\abovedisplayshortskip}
+{%
+\abovedisplayskip\abovedisplayshortskip%
+\belowdisplayskip\belowdisplayshortskip}
+{}{}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0in}
+
+\setlength{\belowdisplayskip}{0pt} \setlength{\belowdisplayshortskip}{0pt}
+\setlength{\abovedisplayskip}{0pt} \setlength{\abovedisplayshortskip}{0pt}
+
+
+
+\usepackage{soul}
+\usepackage[dvipsnames]{xcolor}
+\newcommand{\bulletPoint}[1]{\ul{\textit{\textbf{#1}}}}
+
+
+
+% For better text align
+\usepackage{ragged2e}
+
+
+
+\begin{document}
+\singlespacing
+
+\begin{multicols*}{4}
+
+\tiny
+
+\raggedright
+
+\bulletPoint{Law of Total Probability}:
+Let $A_1, A_2, A_3, \cdots$ be events that partition $\Omega$, i.e., disjoint ($A_i \cap A_j = \varnothing$ for $i\neq j$) and $\bigcup^{n}_{i=1} A_i = \Omega$. Then for event $B$:
+
+\useshortskip \begin{equation*}
+    P(B) = \sum_{i=1} P(A_i \cap B)
+\end{equation*}
+
+
+\bulletPoint{Bayes Rule}:
+Bayes rule also applies to a countably infinite number of events.
+\useshortskip \begin{equation*}
+    P(A_j | B) = \frac{P(B | A_j)}{\sum^{n}_{i=1}P(A_i)P(B | A_i)} P(A_j)
+\end{equation*}
+
+
+\bulletPoint{Random Variable}:
+Random variable is actually a real-valued function $X(\omega)$ over a sample space $\Omega$. We use upper case letters for random variables, and lower case letters for values of random variables.
+
+We use $X \sim p_X(x)$ or simply $X \sim p(x)$ to mean that the discrete random variable X has pmf $p_X(x)$ or $p(x)$.
+
+
+\bulletPoint{Bernoulli Probability}:
+$X \sim Bern(p)$ for $0 \leq p \leq 1$ has the pmf below. $E(X)=p, Var(X)=p(1-p)$
+\useshortskip \begin{equation*}
+    p_X(1) = p, \; \text{and} \; p_X(0)=1-p
+\end{equation*}
+
+
+\bulletPoint{Geometric Distribution}:
+$X \sim Geom(p)$ for $0 \leq p \leq 1$ has pmf below. $E(X)=\frac{1}{p}, Var(X)=\frac{1-p}{p^2}$
+\useshortskip \begin{equation*}
+    p_X(k) = p(1-p)^{k-1}, \; \text{for} \; k=1,2,\cdots
+\end{equation*}
+The Geometric r.v. represents, for example, the number of coin flips until the first heads shows up.
+
+
+\bulletPoint{Binomial Distribution}:
+$X \sim Binom(n, p)$ for  integer $n\geq 0$ and $0 \leq p \leq 1$ has the below pmf. $E(X)=np, Var(X)=np(1-p)$
+\useshortskip \begin{equation*}
+\begin{split}
+        p_X(k) = \frac{n!}{k!(n-k!)} p^k (1-p)^{n-k} \\
+        \text{for} \; k=0,1,2,\cdots
+\end{split}
+\end{equation*}
+with the maximum of $p_X(k)$ is obtained at $k=(n+1)p$. The binomial r.v. represents, for example, the number of heads in \textit{n} independent coin flips.
+
+
+\bulletPoint{Poisson Distribution}: 
+If the average number of packets arriving per unit time is $\lambda$, the probability of $k (k=1,2,\cdots)$ packages arrive within (0, T] can be calculated as the equation below. $E(X)=\lambda T, Var(X)=\lambda T$
+\useshortskip \begin{equation*}
+    P({k}) = \frac{(\lambda T)^k}{k!} e^{-\lambda T}
+\end{equation*}
+Poisson is the limit of Binomial when $p \propto \frac{\lambda}{n}$ has $n \rightarrow \infty$.
+
+
+\bulletPoint{Properties of CDF}:
+$F_X(x)$ is right continuous, i.e., $F_X(a^+) = \lim_{x\rightarrow a^+}F_X(x) = F_X(a)$. \hfill $P\{X=a\} = F_X(a) - F_X(a^-)$, where $F_X(a^-) = \lim_{x\rightarrow a^-}F_X(x)$
+
+A random variable is said to be \textit{continuous} if its cdf is a countinuous function.
+
+
+\bulletPoint{Properties of PDF}:
+If $F_X(x)$ is differentiablem then \textit{X} has a pdf $f(x)$ such that 
+\useshortskip \begin{gather*}
+    \begin{split}
+            f_X(x) & = \frac{dF_X(x)}{dx} \\
+            & = \lim_{\Delta x \rightarrow 0}{\frac{F(x + \Delta x) - F(x)}{\Delta x}} \\
+    \end{split}\\
+    \int^b_a f(x)dx = F(b) - F(a) = P(x \in (a, b])
+\end{gather*}
+Notation: $X \sim F_X(x)$ means that \textit{X} has cdf $F_X(x)$, and $X \sim f_X(x)$ means that \textit{X} has pdf $f_X(x)$. PDF is a continuous version of PMF.
+
+
+\bulletPoint{Uniform Distribution}
+$X \sim U[a, b]$ where $a < b$ has pdf: $f_X(x) = \frac{1}{b-a}$ if $a \leq x \leq b$ and 0 for otherwise. $E(X)=\frac{a+b}{2}, Var(X)=\frac{(b-a)^2}{12}$.The uniform r.v. is commonly used in modeling quantization noise and finite precision computation error.
+
+
+\bulletPoint{Exponential Distribution}
+$X \sim Exp(\lambda)$ where $\lambda > 0$ has pdf: $f_X(x) = \lambda e^{-\lambda x}$ if $x \geq 0$ and 0 for otherwise. $E(X)=\frac{1}{\lambda}, Var(X)=\frac{1}{\lambda^2}$.The exponential r.v. represents interarrival time in a queue (time between two consecutive packet or customer arrivals) or service time in a queue or particle lifetime. The exponential r.v. is memoryless.
+
+\bulletPoint{Gaussian Distribtion}
+$X \sim \mathcal{N}(\mu,\,\sigma^{2})$ has pdf with parameter $\mu$ (mean) and $\sigma ^2$ (variance) shown as below. $E(X)=\mu, Var(X)=\sigma^2$.
+\useshortskip \begin{equation*}
+    f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp{[-\frac{(x-\mu)^{2}}{2\sigma^{2}}]}
+\end{equation*}
+
+
+\bulletPoint{Functions of a Random Variable}:
+If we know a random variable $X \sim f_X(x)$ and the relationship between $x$ and $y$ as $y = g(x)$. Then $p_Y(y)$ can be calculated as:
+\useshortskip \begin{equation*}
+    f_Y(y) = \sum^k_{i=1}\frac{f_X(x_i)}{| g'(x_i) |}
+\end{equation*}
+This property can be used to compute probabilities for an arbitrary Gaussian r.v. from the distribution of the standard Gaussian r.v..
+
+
+\bulletPoint{Generation of Random Variables}
+% Note: The random variables mentioned here are real "Variables". Human are able to generate variables that obey the uniform distribution $U(0, 1]$. However, it is hard to generate variables that obey corresponding probability distribution rules from other random distribution. Hence, we generate a number $y$ from $Y \sim U(0, 1]$ first, and then use it as the value of $F_X(x)$ ($X \sim Exp(\lambda)$) to find the corresponding $x$. By using this method, we are able to generate numbers ($x$) that obey the distribution rule of $Exp(\lambda)$. Hence, $Y = F^{-1}_X(x)$ where $X$ is the target random distribution.
+
+\underline{From a distribution (x) to uniform (y):} 
+1. Find the CDF \( F_X(x) \) of the distribution from which \( x \) is sampled.
+2. Calculate \( y = F_X(x) \) for a given sample \( x \), which gives a uniform random variable \( y \) on the interval [0, 1].
+
+\underline{From uniform (y) to a distribution (x):} 
+1. Find the inverse of the CDF \( F_X^{-1}(y) \) of the desired distribution.
+2. Generate a uniform random variable \( y \) on the interval [0, 1].
+3. Calculate \( x = F^{-1}_X(y) \) using the inverse CDF with the generated uniform \( y \), which gives a random variable \( x \) with the desired distribution.
+
+
+
+\bulletPoint{Joint PMF}: $\sum_{x \in X} \sum_{y \in Y} p_{X, Y}(x,y) = 1$
+
+
+\bulletPoint{Marginal PMF} $p_X(x) =\sum_{y \in Y} p(x,y), \; x \in \chi$
+
+
+\bulletPoint{Properties of Joint and Marginal CDF}:\\
+$\lim_{x,y\rightarrow\infty} F_{X,Y}(x,y) = 1$; $\lim_{y\rightarrow - \infty} F_{X,Y}(x,y)=0$ and vice versa; $\lim_{y \rightarrow \infty} F_{X,Y}(x,y) = F_X(x)$ and $\lim_{x \rightarrow \infty} F_{X,Y}(x,y) = F_Y(y)$. The $F_X(x)$ and $F_Y(y)$ are marginal cdfs of $X$ and $Y$.
+
+\useshortskip \begin{equation*}
+\begin{split}
+    & P\{ a < X \leq b, c < Y \leq d \} \\
+    & = F(b,d) - F(a,d) - F(b,c) + F(a,c)
+\end{split}
+\end{equation*}
+
+X and Y are jointly continuous random variables if their joint cdf is continuous in both x and y. In this case:
+
+\useshortskip \begin{equation*}
+\begin{split}
+    F_{X,Y}(x,y) = \int^x_{-\infty} \int^y_{- \infty} f_{X,Y}(u,v) dudv, \\[-7pt]
+    x,y \in \textbf{R}\\[-5pt]
+\end{split}
+\end{equation*}
+
+If $F_{X,Y}(x,y)$ is differentiable in $x$ and $y$, then: 
+
+\useshortskip \begin{equation*}
+    \begin{split}
+        & f_{X,Y}(x,y) = \frac{\partial^2F(x,y)}{\partial x \partial y} \\
+        & = \lim_{\Delta x, \Delta y \rightarrow 0} \frac{
+        \begin{split}
+            P\{ x < X \leq x+\Delta x,\\
+            y < Y \leq y+\Delta y\}
+        \end{split}
+        }{\Delta x \Delta y} 
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Properties of Joint and Marginal PDF}:
+$\int^{\infty}_{-\infty} \int^{\infty}_{-\infty} f_{X,Y}(x,y) dxdy= 1$; 
+
+$f_X(x) = \int^{\infty}_{-\infty}f_{X,Y}(x,y)dy$
+
+
+\bulletPoint{Conditional CDF and PDF}:
+
+CDF: Find $F_{Y|X}(y | X=x) = P\{ Y\leq y | X=x\}$
+\useshortskip \begin{equation*}
+    \begin{split}
+        & F_{Y|X}(y|x) \\
+        = & \lim_{\Delta x \rightarrow 0}P\{ Y \leq y | x < X \leq x+\Delta x \} \\
+        = & \lim_{\Delta x \rightarrow 0} \frac{P\{ Y \leq y , x < X \leq x+\Delta x \}}{P\{ x < X \leq x+\Delta x \}}\\
+        & \text{Assume $f_X(x)$ is constant within $\Delta x$}\\
+        & P(x \in [x, x+\Delta x]) = f_X(x) \Delta x\\
+        = & \lim_{\Delta x \rightarrow 0} \frac{\int^y_{- \infty} f_{X,Y}(x,u)du \Delta x}{f_X(x)\Delta x}\\
+        = & \int^y_{- \infty} \frac{f_{X,Y}(x,u)}{f_X(x)} du
+    \end{split}     
+\end{equation*}
+
+
+\bulletPoint{Bayes rule of mixed random variables}:
+$\Theta$ is a discrete random variable with $\Theta \sim p_\Theta (\theta)$ and $Y$ is a continuous random variable and given that $f_{Y|\Theta}(y | \theta)$, then
+\useshortskip \begin{equation*}
+    p_{\Theta | Y}(\theta|y) = \frac{f_{Y|\Theta}(y|\theta)}{\sum_{\theta '}p_\Theta (\theta ') f_{Y|\Theta}(y|\theta ')} p_\Theta(\theta)
+\end{equation*}
+
+
+\bulletPoint{Maximum posteriori probability decoder and Maximum likelihood decoder}:
+
+MAP decoder:
+\useshortskip \begin{equation*}
+    d(y) = 
+    \begin{cases}
+        \theta_0 \; & \; \text{if } p_{\Theta|Y}(\theta_0 | y) > p_{\Theta|Y}(\theta_1 | y) \\
+        \theta_1 \; & \; \text{otherwise}
+    \end{cases}
+\end{equation*}
+
+If $p_\Theta(\theta_0) = p_\Theta(\theta_1)$, MAP can be reduces to ML decoder:
+\useshortskip \begin{equation*}
+    d(y) = 
+    \begin{cases}
+        \theta_0 \; & \; \text{if } f_{Y|\Theta}(y | \theta_0) > p_{Y | \Theta}(y | \theta_1) \\
+        \theta_1 \; & \; \text{otherwise}
+    \end{cases}
+\end{equation*}
+
+Minimal probability of error: Given input $\Theta \sim p_\Theta(\theta), p_\Theta(\sqrt{P}) = 0.5, p_\Theta(-\sqrt{P}) = 0.5$. Noise $Z \sim \mathcal{N}(0,\,N)$. Observation $Y = \Theta + Z$
+\useshortskip \begin{equation*}
+    \begin{split}
+        P_e = & P\{ d(Y) \neq \Theta \} \\
+            = & P\{ \Theta = \sqrt{P} \} P\{ d(y) = -\sqrt{P} | \Theta = \sqrt{P} \} + \\
+              & P\{ \Theta = \sqrt{-P} \} P\{ d(y) = \sqrt{P} | \Theta = - \sqrt{P} \}\\
+            & \text{If we use the minimum distance decoder}\\
+            = & \frac{1}{2} P\{ Y \leq 0 | \Theta=\sqrt{P} \} \\
+            & + \frac{1}{2} P\{ Y > 0 | \Theta=-\sqrt{P} \}\\
+            = & \frac{1}{2} P\{ Z \leq -\sqrt{P} \} + \frac{1}{2} P\{ Z > \sqrt{P} \}\\
+            = & Q\left( \sqrt{\frac{P}{N}} \right) = Q(\sqrt{SNR})
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Proproties of expection}:\\
+$ E(g(X)) = \sum_{x \in \mathcal{X}}g(x)p_X(x) = \int^{\infty}_{-\infty} g(x)f_X(x)dx$
+
+$E(const) = const$; \\
+$E[ag_1(X) + g_2(X)] = a E(g_1(X)) + E(g_2(X))$
+
+
+\bulletPoint{Fundamental Theorem of Expection}: \\
+If $Y = g(X) \sim p_Y(y)$, then $E(Y) = \sum_{y \in \mathcal{Y}}yp_Y(y) = \sum_{x \in \mathcal{X}}g(x)p_X(x) = E(g(X)) = \int^{\infty}_{-\infty}yf_Y(y)dy$. Which means that $E(Y)$ can be found using either $f_X(x)$ or $f_Y(y)$.
+
+
+\bulletPoint{Mean}:
+$E(X) = \int^{\infty}_{-\infty}xf_X(x)dx, \; E(X^2) = \int^{\infty}_{-\infty}x^2f_X(x)dx$
+
+
+\bulletPoint{Variance}:$Var(X) = E[(X - E(X))^2] = E(X^2) - (E(X))^2 \geq 0$; $Var(X+Y) = Var(X) + Var(Y) + 2Cov(X,Y)$
+
+
+\bulletPoint{Markov Inequality}: $P(X \geq a) \leq \frac{1}{a}E(x)$ for $x>0 \; \& \; a>1$. 
+\useshortskip \begin{equation*}
+    \begin{split}
+        E(X) = & \int^\infty_{0}xf_X(x)dx \\
+        \geq & \int^\infty_{a}xf_X(x)dx \\
+        \geq & \int^\infty_{a}af_X(x)dx = a P(X\geq a)
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Chebyshev Inequality}: $P(|x-\mu|\geq c) \leq \frac{\sigma^2}{c^2}$ for $x>0 \; \& \; a>1$.
+\useshortskip \begin{equation*}
+    \begin{split}
+        P(|x-\mu| \geq c) & = P((x-\mu)^2 \geq c^2) \\
+        & \leq \frac{1}{c^2} E[(x-\mu)^2] = \frac{\sigma^2}{c^2}
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Expection involving two RVs}
+$E(g(X, Y)) = \int^\infty_{-\infty}\int^\infty_{-\infty}g(x,y)f_{X,Y}(x,y)dxdy$. $g(X, Y)$ may be $X, Y, X^2, X+Y$, etc.
+
+
+\bulletPoint{Correlation}: $E(XY) = \int^\infty_{-\infty}\int^\infty_{-\infty}xyf_{X,Y}(x,y)dxdy$.
+Correlation Coefficient: $\rho_{X,Y} = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}$. $|\rho_{X,Y}| \leq 1$. $\rho$ is basically normalizing the \textit{Cov}.
+
+
+\bulletPoint{Covariance}: $Cov(X, Y) = E[(X - E(X))(Y - E(Y))] = E(XY) - E(X)E(Y)$ $X$ and $Y$ are said to be uncorrelated if $Cov(X,Y)=0$. 
+
+
+\bulletPoint{Conditioning on an event}: Let $X \sim p_X(x)$ be a r.v, and $A$ be a nonzero probability event. $p_{X|A}(x) = \frac{p_X(x)}{P\{ X \in A\}}$ or $f_{X|A}(x) = \frac{f_X(x)}{P\{ X \in A\}}$,  if $x \in A$, and 0 for other wise. $\sum_{x \in A}f_{X|A}(x)=1$. It defines a new probability distribution that only focuses on \textit{A}. 
+
+
+\bulletPoint{Conditional Expectation on an event}: $E(g(X)|A) = \int^\infty_{-\infty}g(x)f_{X|A}(x)dx$
+
+
+\bulletPoint{Total Expectation Theorem}: Let $X \sim f_X(x)$ and $A_1, A_2, \cdot, A_n$ be disjoint nonzero probability events with $P(\cup^n_{i=1}A_i) = \sum^n_{i=1}P(A_i)=1$. Then: $E(g(X)) = \sum^n_{i=1}P\{ X \in A_i \} E(g(X)|A_i)$. This theorem said: find the mean of each part in a combined distribution, and them sum them up to get the whole expectation of the total distribution.
+
+
+\bulletPoint{Conditional Expectation on a random variable}: \\
+$E(g(X, Y)|Y=y) = \int^\infty_{-\infty}g(x,y)f_{X|Y}(x|y)dx$
+
+
+\bulletPoint{Iterated Expectation}: $E_Y\{ E_X(g(X,Y)|Y)\} = E_{X,Y}(g(X, Y))$
+
+
+\bulletPoint{Conditional Variance}: $Var(X|Y=y) = E[(X-E(X|Y))^2|Y] = E(X^2|Y=y) - [E(X|Y=y)]^2$
+
+
+\bulletPoint{Law of Conditional Variances}: $Var(X) = E_Y(Var(X|Y)) + Var(E(X|Y)) = \text{bias} + \text{Variance}$
+
+
+\bulletPoint{Mean Square Error}: $MSE = E_{X,Y}[(X - \hat{X})^2] = E_X[(X-g(Y))^2]$
+
+\bulletPoint{Minimum MSE} $MMSE = E_Y(Var(X|Y)) = E(X^2) - E[(E(X|Y))^2]$. The $\hat{x}$ that achieves the minimum MSE is called the minimum MSE estimate of $x$ given $Y$. $\hat{x}=g(y)=E[X|Y=y]$. Which means that for each $Y=y$, the minimum value for $E_X[(X-g(y))^2|Y=y]$ is obtained when $g(y)=E[X|Y=y]$.
+
+Properties: 
+
+Unbiased: $E(\hat{X}) = E(X)$. $E[(X-\hat{X})|Y=y] = 0$.
+
+Orthogonal:
+\useshortskip \begin{equation*}
+    \begin{split}
+    & E[(X-\hat{X})\hat{X}] = E_Y[E((X-\hat{X})\hat{X}|Y)]\\
+                        & \text{$\because \hat{X}$ is a function of Y,}\\[-3pt]
+                        & \text{$\therefore$ it is a constant when condition on Y}\\[-3pt]
+                      = & E_Y[\hat{X} E((X-\hat{X})|Y)]\\
+                      = & E_Y[\hat{X}(E(X|Y)-\hat{X})]\\
+                      & \because E(X|Y)=\hat{X}\\
+                      = & 0 \\[-5pt]
+    \end{split}
+\end{equation*}
+$Var(X) = Var(\hat{X}) + E(Var(X|Y))$
+
+
+\bulletPoint{MMSE Linear Estimatation}: Properties of \textbf{best} linear MSE estimate: $E(\hat{X}) = E(X)$; If $\rho_{X,Y}=0$, i.e., $X$ and $Y$ are uncorrelated, then $\hat{X}=E(X)$, which means observation of $Y$ is ignored and this is the disadvantage of linear estimate.; If $\rho_{X,Y}=\pm 1$, i.e., $(X-E(X))$ and $(Y-E(Y))$ are linearly dependent, then the linear estimate is perfect.
+\useshortskip \begin{equation*}
+    \begin{split}
+        \hat{X} & = \rho_{X,Y}\sigma_X\left( \frac{Y-E(Y)}{\sigma_Y} \right) + E(X)\\[-4pt]
+        MSE & = (1-\rho^2_{X,Y})\sigma^2_X
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Properties of Jointly Gaussian Random Variables}:
+If $X$ and $Y$ are jointly Gaussian, they are individually Gaussian. The converse is not necessarily true; If $X$ and $Y$ are jointly Gaussian, the conditional pdf is Gaussian; If $X$ and $Y$ are jointly Gaussian and uncorrelated ($\rho_{X,Y}=0$), they are also independent.
+\useshortskip \begin{equation*}
+\begin{split}
+ X|\{Y=y\} \sim \mathbb{N}&\left( \rho_{X,Y}\sigma_X\frac{y-\mu_Y}{\sigma_Y}+\mu_X,\right.\\
+&\left. (1-\rho^2_{X,Y})\sigma^2_X ) \right)\\[-8pt]
+\end{split}
+\end{equation*}
+
+
+\bulletPoint{Random Vectors}:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & CDF: F_X(\Vec{x}) = P\{X_1 \leq x_1, \cdots, X_n \leq x_n\}\\
+        & PDF: f_X(\Vec{x}) = f_{X_1, \ldots, X_n}(x_1, \ldots, x_n)\\
+        & Marginals: \\
+        & F_{X_1}(x_1) = \lim_{x_2, x_3 \rightarrow \infty}F_{X}(x_1, x_2, x_3)\\
+        & f_{X_1}(x_1) = \int^\infty_{-\infty}f_{X_1,X_2}(x_1,x_2)dx_2\\
+        & Chain rule: f_X(\Vec{x}) = f_{X_1}(x_1)\cdot\\
+        & f_{X_2|X_1}(x_1|x_1)f_{X_3|X_1,X_1}(x_3|x_1, x_2)\cdots
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Conditional Independence}:
+$X_1$ and $X_3$ are said to be conditionally independent given $X_2$ if 
+\useshortskip \begin{equation*}
+    \begin{split}
+        & f_{X_1,X_3|X_2}(x_1,x_3|x_2) = \\
+        & f_{X_1|X_2}(x_1,x_2)\cdots f_{X_3|X_2}(x_3|x_2) \\ 
+        & \forall(x_1,x_2,x_3)
+    \end{split}
+\end{equation*}
+
+This does not mean that $X_1$ and $X_3$ are independent, or vice versa.
+
+
+\bulletPoint{Mean and Covariance Matrix of random vector}:
+\useshortskip\begin{equation*}
+    \begin{split}
+        & E(X) = [E(X_1), E(X_2), \cdots, E(X_n)]^T\\
+        & Cov(X) = \Sigma_X = 
+        \begin{bmatrix}
+        \sigma_{11} & \sigma_{12} & \cdots & \sigma_{1n}\\
+        \vdots & \vdots & \vdots & \vdots \\
+        \sigma_{n1} & \sigma_{n2} & \cdots & \sigma_{nn}\\
+        \end{bmatrix}\\
+        & = E[(X-E_X)\cdot(X-E_X)^T]
+    \end{split}
+\end{equation*}
+
+$\Sigma_X$ is real, symmetric, and non-negative definite, i.e. $a^T\Sigma_Xa \geq 0, \forall a$ or $|\Sigma_X| \geq 0$.
+
+
+\bulletPoint{Mean and variance of sum of r.v.}
+Let $Y=I^TX$ be the sum of X.
+\useshortskip \begin{equation*}
+    \begin{split}
+        E(Y) = & \sum^n_{i=1}E(X_i)\\
+        Var(Y) = & \sum^n_{i=1}Var(X_i) \\
+        & + \sum^n_{i=1}\sum^n_{j\neq i}Cov(X_i, X_j)
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Gaussian Random Vectors (GRV)}:
+A random vector X is a GRV if the joint pdf is of the form:
+\useshortskip \begin{equation*}
+    \begin{split}
+        f_X(x) = & \frac{1}{(2\pi)^{\frac{n}{2}}|\Sigma|^{\frac{1}{2}}}\cdot\\
+        & \exp{-\frac{1}{2}(x-\Vec{\mu})^T\Sigma^{-1}(x-\Vec{\mu})}
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Properties of GRVs}:
+1. For a GRV, uncorrelation implies independence.
+
+2. Linear transformation of a GRV yields a GRV. I.e., given any $m \times n$ matrix A, where $m \leq n$, and A has full rank $m$, then: $\mathbb{Y} = A\mathbb{X} \sim \mathbb{N}(A\mathbb{\mu}, A\Sigma A^T)$
+
+3. Mariginals of a GRV are Gaussian. I.e., if X is GRV, for any subset $\{i_1, \ldots, i_k\} \subset \{1, \ldots, n\}$ of indices, the RV: $\mathbb{Y}=[X_{i1}, X_{i2}, \ldots, X_{ik}]^T$ is a GRV.
+
+4. Conditionals of a GRV are Gaussian, if
+\useshortskip\begin{equation*}
+\begin{split}
+& \mathbf{X}=\left[\begin{array}{c}
+\mathbf{X}_1 \\
+-- \\
+\mathbf{X}_2
+\end{array}\right] \sim \\
+& \mathcal{N}\left(\left[\begin{array}{c}
+\mu_1 \\
+-- \\
+\mu_2
+\end{array}\right],\left[\begin{array}{c|c}
+\Sigma_{11} & \Sigma_{12} \\
+-- & -- \\
+\Sigma_{21} & \Sigma_{22}
+\end{array}\right]\right)
+\end{split}
+\end{equation*}
+
+Then,  $\mathbb{X}_2|\{\mathbb{X}_1=x\} \sim \mathbf{N}(\Sigma_{21}\Sigma^{-1}_{11}(x-\mu_1)+\mu_2, \Sigma_{22}-\Sigma_{21}\Sigma^{-1}_{11}\Sigma_{12})$
+
+5. If $[\mathbb{Y}^T X]^T$ is a GRV, then the best MSE estimate of X given Y is linear.
+
+
+\bulletPoint{MSE Estimation: Vector Case}:
+When $E(X)=0$ and $E(Y)=0$:  
+\useshortskip \begin{equation*}
+    \begin{split}
+        & \Hat{X} = \Vec{h}^T \Vec{Y} = \Sigma^n_{i=1}h_iY_i\\
+        & \Sigma_{\Vec{Y}} \Vec{h} = \Sigma_{\Vec{Y}X} \\
+        & \Vec{h} = \Sigma^{-1}_{\Vec{Y}}\Sigma_{\Vec{Y}X}\\
+        & \Hat{X} = \Sigma^T_{\Vec{Y}X}\Sigma^{-1}_{\Vec{Y}} \Vec{Y}\\
+        & MMSE = \sigma^2_X - \Sigma^T_{\Vec{Y}X}\Sigma^{-1}_{\Vec{Y}}\Sigma_{\Vec{Y}X}\\
+        & \Sigma_{\Vec{Y}X} = E[(\Vec{Y}-E(\Vec{Y}))(X-E(X))]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Almost Sure (a.s.) Convergence}:
+We say $X_n \rightarrow X$ almost surely or with probability 1 if:
+\useshortskip \begin{equation*}
+    \mathbb{P} \left( \left\{\omega: \lim_{n \rightarrow \infty}X_n(\omega) = X(\omega) \right\}  \right) = 1
+\end{equation*}
+
+Lemma:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & \mathbb{P} \left( \max_{i\geq n} |X_i - X| > \epsilon \right) \rightarrow 0 \\[-4pt]
+        & \text{for any $\epsilon >0$ iff $X_n \xrightarrow{a.s.} X.$}
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Strong Law of Large Numbers}:
+If $X_1, X_2, \ldots$, are i.i.d (pairwise independence is suffices) with finite mean $\mu$, then:
+\useshortskip \begin{equation*}
+    S_n = \frac{1}{n}\sum^n_{i=1}X_i\xrightarrow{a.s.}\mu \; \text{as} \; n \rightarrow \infty
+\end{equation*}
+
+
+\bulletPoint{Convergence in Mean Square}:
+We say $X_n \rightarrow X$ in mean square or $L^2$ if
+\useshortskip \begin{equation*}
+    \lim_{n \rightarrow \infty} \mathbb{E}(X_n-X)^2 = 0
+\end{equation*}
+Convergence in mean square does not imply convergence a.s.
+
+Convergence in a.s. does not imply convergence in mean square.
+
+\bulletPoint{Convergence in Probability}:
+A sequence $X_1, X_2, \ldots$ converges to a random variable in probability if for any $\epsilon > 0$, 
+\useshortskip \begin{equation*}
+    \lim_{n \rightarrow \infty}\mathbb{P}(|X_n-X|>\epsilon)=0 
+\end{equation*}
+
+If $X_n \xrightarrow{a.s.} X$, then $X_n \xrightarrow{P} X$.
+
+If $X_n \xrightarrow{a.s.} X$, then the indicator function $\mathbf{1}_{|X_n-X|>\epsilon} \xrightarrow{a.s.} 0$. The indicator function is 1 if the absolute difference between $X_n$ and $X$ is greater than $\epsilon$, and 0 otherwise.
+
+If $X_n \rightarrow X$ in mean square, then $X_n \xrightarrow{P} X$. Converse is not ture.
+
+Convergence in probability is weaker than both convergence a.s. and in mean square.
+
+
+\bulletPoint{Weak Law of Large Numbers}:
+Suppose $X_1, X_2, \ldots$ are such that $\mathbb{E}(X_i)=\mu, \mathbb{E}^2(X_i)=\sigma^2 < \infty$ and $\mathbb{E}[X_iX_j]\leq 0, \forall i\neq j$. Then,
+\useshortskip \begin{equation*}
+    \frac{1}{n} \sum^n_{i=1}X_i\xrightarrow{P}\mu \; as \; n \rightarrow \infty
+\end{equation*}
+
+\useshortskip \begin{equation*}
+    \begin{split}
+        & M_n = \frac{X_1 + \cdots + X_n}{n}\\
+        & \mathbb{E}[M_n]= \frac{\mathbb{E}[X_1 + \cdots + X_n]}{n} = \frac{n \mu}{n} = \mu \\
+        & Var(M_n) = \frac{Var(X_1 + \cdots + X_n)}{n^2} = \frac{\sigma^2}{n} \\
+        & P(|M_n-\mu| \leq \epsilon) \leq \frac{Var(M_n)}{\epsilon^2} \\[-3pt]
+        & = \frac{\sigma^2}{n \epsilon^2} \xrightarrow{n \rightarrow \infty} 0 \; (Chebyshev \; Inequality)
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Convergence in distribution}
+We say that $X_n \xrightarrow{d} X$ if for all continuous bounded functions $f$, 
+\useshortskip \begin{equation*}
+    \begin{split}
+        & \mathbb{E}[f(X_n)] \rightarrow \mathbb{E}[f(x)]\\
+        & OR, \; equivalently,\\
+        & F_{X_n}(t) \rightarrow F_X(t) \text{for all continuity points of $F_X(\cdot)$}
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Central Limit Theorem}:
+Consider i.i.d. random variables $X_1, X_2, \ldots$ with $\mathbb{E}(X_i) = \mu$ and $Var(X_i) = \sigma^2 < \infty$. Let $S_n = \frac{1}{n}\sum^n_{i=1}X_i$. Then
+\useshortskip \begin{equation*}
+    Z_n = \frac{S_n-\mu}{\sigma/\sqrt{n}} \xrightarrow{d} \mathbf{N}(0,1)
+\end{equation*}
+
+
+\bulletPoint{Random Process Equality}:
+Two random process is said to be equal if:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & x(t) = y(t) \; \text{if} \; x(t, \zeta) = y(t, \zeta) \; \forall t, \zeta \\
+        & \text{and }\mathbb{E}\{ | x(t) - y(t) | ^2 \} = 0, \; \forall \; t
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{First Order Statistic}:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & \text{CDF: } F(x,t) = \mathbb{P}\{ \mathbf{x}(t) \leq x \}\\
+        & \text{PDF: } f(x,t) = \frac{\partial F(x,t)}{\partial x}\\
+        & \text{Mean: } \eta (t) = \mathbb{E}\{ \mathbf{x}(t) \} = \int^{\infty}_{-\infty}xf(x,t)dx\\
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Second Order CDF and PDF}:
+\useshortskip \begin{equation*}
+    \begin{split}
+        \text{CDF: } F(x_1, x_2; t_1, t_2) = & \mathbb{P}\{ \mathbf{x}(t_1) \leq x_1, \\
+        & \mathbf{x}(t_2) \leq x_2 \}\\
+        \text{PDF: } f(x_1, x_2; t_1, t_2) = & \frac{\partial^2 F(x_1, x_2; t_1, t_2)}{\partial x_1 \partial x_2}\\
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Autocorrelation}:
+It's used to measure the statistical dependence between values of the same variable at different times. In simpler terms, it quantifies how similar a signal is to itself at different points in time.
+\useshortskip \begin{equation*}
+    \begin{split}
+         & R_{xx}(t_1, t_2)= \mathbb{E}\{ \mathbf{x}(t_1) \mathbf{x}^*(t_2) \} \\[-3pt]
+         & = \int^{\infty}_{-\infty}\int^{\infty}_{-\infty}x_1 x^*_2 f(x_1, x_2; t_1, t_2)dx_1dx_2\\[-3pt]
+         & \text{For complex processes: }R_{xx}(t_2,t_1) = R^*_{xx}(t_1,t_2) \\[-3pt]
+         & \text{For real processes: }R_{xx}(t_2,t_1) = R_{xx}(t_1,t_2)
+    \end{split}
+\end{equation*}
+
+Properties: Symmetry: $R(\tau) = R(-\tau)$. Maximum Value: $R_{xx, max}=R_{xx}(0)$. Number of max values: If x(t) has one max Rxx, it is not a periodic function. If x(t) has infinite max Rxx, it is a periodic function. Positive-definite function: $\sum^m_{i=0}\sum^m_{f=0}a_ia^*_jR_{xx}(t_i,t_j)\geq 0$
+
+Types: High Autocorrelation (Positively or Negatively):  Indicates that the process has a strong memory, i.e., future values are highly dependent on past values. Low Autocorrelation (Close to 0): Indicates that the process is more like a random noise, with less predictability.
+
+
+\bulletPoint{Autocovariance}: Autocovariance measures the degree to which two variables vary together. In the context of a random process, autocovariance helps to understand how a variable at one-time point $t$ is related to the variable at another time point $t+\tau$. $C_{xx}(t_1, t_2) = R_{xx}(t_1, t_2) - \eta(t_1) \eta^*(t_2)$.
+
+Properties: Symmetry: $C(\tau) = C(-\tau)$. Maximum Value: $C_{xx, max}=C_{xx}(0)$. Relation to Autocorrelation: $R(\tau) = \frac{C(\tau)}{C(0)}$. 
+
+Autocovariance Coefficient: $r(t_1, t_2) = \frac{C_{xx}(t_1,t_2)}{\sqrt{C_{xx}(t_1,t_1)C_{xx}(t_2,t_2)}}$. Properties: $r(t_1,t_2)\leq 1, \; \text{and} \; r(t,t)=1$.
+
+
+\bulletPoint{Cross-correlation}: Mathematically representation: $R_{xy}(t_1,t_2) = \mathbb{E}\{ \mathbf{x}(t_1) \mathbf{y}^*(t_2) \} = R^*_{yx}(t_2,t_1)$. x(t) and y(t) are orthogonal if: $R_{xy}(t_1,t_2)=0, \forall t_1,t_2$.
+
+\bulletPoint{Cross-covariance}: Mathematically representation: $C_{xy}(t_1,t_2) = R_{xy}(t_1,t_2) - \eta_x(t_1)\eta^*_y(t_2)$. x(t) and y(t) are uncorrelated if: $C_{xy}(t_1,t_2)=0, \forall t_1,t_2$.
+
+
+\bulletPoint{Power Spectrum}: The power spectral density of a WSS ramdom process X(t) is defined as the Fourier transform of its autocorrelation function.
+
+Continuous:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & S_{xx}(\omega) = \int^{+\infty}_{-\infty}R_{xx}(\tau)e^{-j\omega\tau}d\tau \\[-4pt]
+        & R_{xx}(\tau) = \int^{\infty}_{-\infty}S_{xx}(\omega)e^{j\omega \tau}\frac{d\omega}{2\pi}\\[-4pt]
+        & R_{xx}(\tau) = E\{\mathbf{x}(t+\tau)\mathbf{x}^*(t)\} \\[-4pt]
+        & S_{xy}(\omega) = \int^{+\infty}_{-\infty}R_{xy}(\tau)e^{-j\omega\tau}d\tau \\[-7pt]
+    \end{split}
+\end{equation*}
+
+Discrete:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & R_{xx}[m] = \int^{\pi}_{-\pi}S_{xx}(\omega)e^{jm\omega}\frac{d\omega}{2\pi}\\[-4pt]
+        & S_{xx}(\omega) = \sum^{\infty}_{m=-\infty} R_{xx}[m] e^{-jm\omega}\\[-7pt]
+    \end{split}
+\end{equation*}
+
+Properties: If $x(t)$ is complex, then $S_{xx}(\omega)$ is non-negative and real. If $x(t)$ is complex, then $S_{xx}(\omega)$ is non-negative, real, and symmetric. $S_{xx}(\omega)$ is non-negative, proven by Wiener-Khinchin theorem. For the discrete process, the power spectrum is continuous and periodic with period 2pi.
+
+Type of power spectrum: 
+
+Continuous: 
+\useshortskip \begin{equation*}
+    \begin{split}
+        & \text{Fourier Transform:}\\[-5pt]
+        & h(t)\xrightarrow{FT}H(\omega)\\[-3pt]
+        & S_{xy}(\omega) = S_{xx}(\omega)H^*(\omega) \\[-3pt]
+        & S_{yy}(\omega) = S_{xx}(\omega)|H(\omega)|^2 \\[-3pt]
+        & \text{Laplace Transform:}\\[-5pt]
+        & h(t) \xrightarrow{LT}\mathbb{H}(s), \mathbb{H}(j\omega) = H(\omega)\\[-3pt]
+        & \mathbb{S}_{xy}(s) = \mathbb{S}_{xx}(s)\mathbb{H}(-s)\\[-3pt]
+        & \mathbb{S}_{yy}(s) = \mathbb{S}_{xx}(s)\mathbb{H}(s)\mathbb{H}(-s)\\[-7pt]
+    \end{split}
+\end{equation*}
+
+Discrete:
+\useshortskip \begin{equation*}
+    \begin{split}
+    & \text{Discrete-time Fourier Transform:}\\[-5pt]
+    & h(t)\xrightarrow{DTFT}H(\omega)\\[-3pt]
+    & S_{xy}(\omega) = S_{xx}(\omega)H^*(\omega) \\[-3pt]
+    & S_{yy}(\omega) = S_{xx}(\omega)|H(\omega)|^2 \\
+    \end{split}
+\end{equation*}
+
+\useshortskip \begin{equation*}
+    \begin{split}
+    & \text{Z-Transform:}\\[-5pt]
+    &h[n]\xrightarrow{zT} \mathbb{H}(z), \mathbb{H}(e^{j\omega})=H(\omega)\\[-3pt]
+    & \mathbb{S}_{xy}(z) = \mathbb{S}_{xx}(z)\mathbb{H}(z^{-1})\\[-3pt]
+    & \mathbb{S}_{yy}(z) = \mathbb{S}_{xx}(z)\mathbb{H}(z)\mathbb{H}(z^{-1})\\[-7pt]
+    \end{split}
+\end{equation*}
+
+Z-transform: $R_{xx}[m] \xrightarrow{zT} \mathbb{S}_{xx}(z) = \sum^\infty_{m=-\infty}R_{xx}[m]z^{-m}$. Z-transform to DTFT: $z=e^{j\omega}$
+
+
+\bulletPoint{Wiener-Khinchin theorem}: 
+\useshortskip \begin{equation*}
+    \mathbb{E}\{ |\mathbf{x}(t)|^2 \} = R_{xx}(0) = \int^{+\infty}_{-\infty}S_{xx}(\omega)\frac{d\omega}{2\pi} \geq 0
+\end{equation*}
+
+
+\bulletPoint{Create a random process from Sxx}:
+For any S(w), formulate the pdf of w like $f_{\omega}(\omega) = \frac{S(\omega)}{2\pi R_{xx}(0)}$. And then define w. According to the formulated pdf, find w. Then the random process can be determined like $x(t) = a \cos(\omega t + \phi)$. In which the $\phi$ can be an arbitrary random variable like the uniform distribution.
+
+
+\bulletPoint{Ergodicity}: Ergodicity refers to the property that the time average of a process equals the ensemble average. \underline{Prerequisite}: x(t) is a real stationary process, with mean $\eta$ = E{x(t)}. 
+
+\underline{Time average}: $\mathbb{\eta}_T = \frac{1}{2T}\int^T_{-T}\mathbf{x}(t)dt$. $\eta_T$ is a random variable. $\mathbb{E}\{\eta_T\} = \frac{1}{2T}\int^T_{-T}\mathbb{E}\{\mathbf{}{x}(t)\}dt = \eta$. Therefore, $\eta_T$ is an estimate of $\eta$.
+
+
+\bulletPoint{Mean-erogdic}: x(t) is mean-ergodic process if $\eta_T \rightarrow\eta \; as \; T\rightarrow\infty$ OR $\sigma_T \rightarrow 0 \; as \;  T\rightarrow \infty$. If a process is mean-ergodic, than the ensemble average, which is hard to observe, can be replaced by time average, which is easier to observe.
+
+
+\bulletPoint{Slutsky's Theorem}:
+
+Continuous: x(t) is mean-ergodic if and only if $\frac{1}{T}\int^T_0C_{xx}(\tau)d\tau \rightarrow 0 \; \text{as} \; T \rightarrow \infty$.
+
+Discrete: x(t) is mean-ergodic if and only if $\frac{1}{M}\sum^M_{m=0}C_{xx}[m]\rightarrow 0 \; \text{as} \; M \rightarrow \infty$.
+
+
+\bulletPoint{Covariance-erogdic Process}: x(t) is covariance-erogdic if and only if
+\useshortskip \begin{equation*}
+    \begin{split}
+        & \frac{1}{T} \int^T_0C_{zz}(\tau)d\tau \rightarrow 0 \; \text{as} \; T\rightarrow\infty \\[-3pt]
+        & \text{Where} \;\; z(t) = x(t+\lambda)x(t)\\[-3pt]
+        & C_{zz}(\tau) = E\{\underbrace{x(t+\lambda+\tau)x(t+\tau)}_{z(t+\tau)} \cdot\\[-5pt]
+        & \underbrace{x(t+\lambda)x(t)}_{z(t)}\} - \underbrace{C^2_{xx}(\lambda)}_{E^2(z(t))}\\[-7pt]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Distribution-ergodic Process}: x(t) is distribution-erogdic if and only if
+\useshortskip \begin{equation*}
+    \begin{split}
+        & \frac{1}{T}\int^T_0C_{yy}(\tau)d\tau\rightarrow0 \; \text{as} \; T\rightarrow\infty \\[-3pt]
+        & y(t) = U[x-x(t)]\\[-5pt]
+        C_{yy}(\tau) & = E\{y(t+\tau)y(t)\} - E^2\{y(t)\} \\[-3pt]
+        & = F_2(x,x;\tau)-F^2_1(x)\\[-7pt]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{White Noise Process}: $C_{xx}(t_1,t_2) = 0, \forall t_1 \neq t_2$. That is to say x(t1) and x(t2) are uncorrelated for every $t_1 \neq t_2$.
+
+
+\bulletPoint{Strict-Sense Stationary (SSS)}: A random process X(t) is said to be Strict-Sense Stationary if all its statistical properties, including mean, variance, and higher-order moments, are invariant under time translation. $f(x_1, \cdots, x_n; t_1, \cdots, t_n) = f(x_1, \cdots, x_n; t_1+c, \cdots, t_n+c), \forall c$
+
+
+\bulletPoint{Wide-Sense Stationary (WSS)}: A random process is said to be WSS if it satisfies the following conditions: 1. $\mu(t) = \mu = \text{constant}$. 2. $\delta^2(t) = \delta^2 = \text{constant}$. 3. $R_{xx}(t_1, t_2) = R_{xx}(t_1 + \tau, t_2+\tau), \forall \tau$. $SSS \Longrightarrow WSS$.
+
+
+\bulletPoint{Memoryless System}: If y(t) = g(x(t)), then the output y(t) depends only on the present input. Then such a system is called the memoryless system. $\mathbf{y}(t_n) = g(\mathbf{x}(t_1), \mathbf{x}(t_2), \cdots, \mathbf{x}(t_n)) = g(\mathbf{x}(t_n))$. For a memoryless system, if x(t) is SSS, then y(t) is also SSS. However, if x(t) is WSS, y(t) may or may not be WSS.
+
+Find the PDf of Y: If $g_1(x_1, \ldots, x_n ) = y'_1; \cdots; g_n(x_1, \ldots, x_n ) = y'_n$ has one solution $x'_1, \ldots, x'_n$. Then:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & f_y(y'_1, \ldots,y'_n) = \frac{f_x(x'_1, \ldots, x'_n)}{|J(x'_1, \ldots, x'_n)|} \\[-8pt]
+        & J = 
+            \begin{vmatrix}
+            \frac{\partial y_1}{\partial x_1} \frac{\partial y_1}{\partial x_2} \\
+            \frac{\partial y_2}{\partial x_1} \frac{\partial y_2}{\partial x_2}
+            \end{vmatrix}\\
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Linear System}: $\mathbf{y}(t) = L[\mathbf{x}(t)]$, $h(t) = L[\delta(t)]$, $ \mathbf{y}(t) = \mathbf{x}(t) * h(t) = \int^{+\infty}_{-\infty}\mathbf{x}(t-\alpha) h(\alpha) d\alpha$. 
+
+\underline{Properties:} 1. $L[a_1\mathbf{x}_1(t) + a_2\mathbf{x}_2(t)] = a_1L[\mathbf{x}_1(t)] + a_2L[\mathbf{x}_2(t)]$. 2. If x(t) is a normal process (or SSS), then y(t) is also normal process (or SSS). 3. If x(t) is WSS, then x(t) and y(t) are jointly WSS.
+
+\underline{Fundamental Theorem:} 1. $\mathbb{E}\{L[\mathbf{x}(t)]\} = L\{\mathbb{E}[\mathbf{x}(t)]\}$. 2. $R_{xy}(t_1,t_2) = L^*_2[R_{xx}(t_1,t_2)] = \int^\infty_{-\infty}R_{xx}(t_1,t_2-\alpha)h^*(\alpha)d\alpha$ $L_2 \text{ operates on } t_2$. 3. $R_{yy}(t_1,t_2)=L_1[R_{xy}(t_1,t_2)]$ $L_1\text{ operates on }t_1$.
+
+
+\bulletPoint{Discrete Linear System}:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & \mathbf{y}[n] = \mathbf{x}[n] * h[n] = \sum^{\infty}_{k=-\infty}\mathbf{x}[n-k]h[k] \\[-8pt]
+    \end{split}
+\end{equation*}
+Where $h[n]$ is the impulse response of the system, $h[n] = L[\delta[n]]$.
+
+
+\bulletPoint{Poisson Process}:
+Mathematical Representation: $\mathbb{P}\{ \mathbf{n}(t_1, t_2) = k \} = \frac{e^{-\lambda (t_1-t_2)} (\lambda (t_1-t_2))^k}{k!}$.
+
+\underline{Autocorrelation}: $R_{xx}(t,t) = \lambda t + \lambda^2 t^2$, $R_{xx}(t_1, t_2) = \lambda \min(t_1, t_2)+\lambda^2t_1t_2$. \underline{Power Spectrum}: $S_{xx}(\omega) = 2\pi \lambda^2\delta(\omega) + \lambda$.
+
+Independent Property: If the intervals (t1, t2) and (t3, t4) are non-overlapping, then the random variables n(t1, t2) and n(t3, t4) are independent.
+
+
+\bulletPoint{Shot Noise}: Shot noise is the output of a linear system driven by a train of Poisson impulses. Shot noise: $\mathbf{s}(t) = L\left[\sum_i \delta(t-\mathbf{t}_i)\right]$. Where $L$ has impulse response $h(t)$, $h(t)$ is a real function, $\mathbf{t}_i$ are a set of Poisson points with average density $\lambda$.
+
+\underline{SSS Properties}: Since Poisson impulses are SSS, s(t) is also SSS.
+
+\underline{Mean}: $E\{s(t)\} = L[E\{z(t)\}] = L[\lambda] = \lambda \int^\infty_{-\infty}h(t)dt = \lambda H(0)$, where $z(t)$ is the Poisson impulse. \underline{Variance}: $\sigma^2_s = \lambda\int^{+\infty}_{-\infty}h^2(t)dt$. \underline{Autocorrelation}: $R_{ss}(\tau) = \lambda^2H^2(0) + \lambda h(\tau) * h(-\tau)$. \underline{Power Spectrum}: $S_{xx}(\omega) = 2\pi \lambda^2\delta(\omega) + \lambda$.
+
+
+\bulletPoint{Modulating Process}: $\mathbf{w}(t) = r(t)e^{j\phi(t)}$,
+where $\Re[\mathbf{w}(t)] = \mathbf{a}(t)$, $\Im[\mathbf{w}(t)] = \mathbf{b}(t)$, $\mathbf{w}(t)$ is a complex process, $\mathbf{a}(t)$ and $\mathbf{b}(t)$ are real and zero mean process
+
+Autocorrelation: $R_{ww}(\tau) = 2R_{aa}(\tau) - 2jR_{ab}(\tau)$. Power Spectrum Density: $S_{ww}(\omega) = 2S_{aa}(\omega) - 2jS_{ab}(\omega)$.
+
+
+\bulletPoint{Modulated Process}: $\mathbf{z}(t) = \mathbf{w}(t)e^{j\omega_0t}$, where $e^{j\omega_0t}$ is a complex sinusoidal carrier, $\omega_0$ is the carrier frequency.
+\useshortskip \begin{equation*}
+    \begin{split}
+        \Re[\mathbf{z}(t)] = \mathbf{x}(t) = & \mathbf{a}(t)\cos(\omega_0t) - \mathbf{b}(t)\sin(\omega_0t)\\[-3pt]
+        =& \mathbf{r}(t)\cos[\omega_0t+\mathbf{\phi}(t)] \\[-3pt]
+        \Im[\mathbf{z}(t)] = \mathbf{y}(t) = &  \mathbf{b}(t)\cos(\omega_0t) + \mathbf{a}(t)\sin(\omega_0t)\\[-3pt]
+        = &  \mathbf{r}(t)\sin[\omega_0t+\mathbf{\phi}(t)] \\[-3pt]
+        & \text{$\mathbf{r}(t)$ is for amplitude modulation}\\[-3pt]
+        & \text{$\mathbf{\phi}(t)$ is for phase modulation}\\[-7pt]
+    \end{split}
+\end{equation*}
+
+Mean: $\mathbb{E}(\mathbf{x}(t)) = \mathbb{E}(\mathbf{y}(t)) = 0$.
+
+Autocorrelation: $R_{zz}(\tau) = R_{ww}(\tau)e^{j\omega_0\tau}$. If x(t) is WSS:
+\useshortskip \begin{equation*}
+    \begin{split}
+        R_{xx}(\tau)= R_{yy}(\tau) = & R_{aa}(\tau)\cos(\omega_0\tau) \\
+        & + R_{ab}(\tau)\sin(\omega_0\tau) \\
+        R_{xy}(\tau) = -R_{yx}(\tau) = &  R_{ab}(\tau)\cos(\omega_0\tau) \\
+        & - R_{aa}(\tau)\sin(\omega_0\tau)\\[-5pt]
+    \end{split}
+\end{equation*}
+If x(t) is WSS, then y(t) is also WSS. x(t) is WSS if $R_{aa}(\tau) = R_{bb}(\tau) \; and \; R_{ab}(\tau) = -R_{ba}(\tau)$
+
+Power Spectrum: $S_{zz} = S_{ww}(\omega - \omega_0)$, where $S_{ww}$ is the base psd, and $\omega - \omega_0$ is the modulation shifting the base frequency to carrier frequency.
+
+
+\bulletPoint{Demodulation}: $\mathbf{w}(t) = \mathbf{z}(t)e^{-j\omega_0t}$
+
+
+\bulletPoint{Bandlimited Process}: A bandlimited process refers to a signal or a stochastic process that contains no frequencies higher than a certain finite frequency. 
+
+x(t) is bandlimited if
+\useshortskip \begin{equation*}
+    \begin{split}
+        & R_{xx}(0) < \infty \; (\text{finite power})\\
+        & S_{xx}(\omega) = 0 \; \forall |\omega|>\sigma \; (\text{limited spectral width})\\[-5pt]
+    \end{split}
+\end{equation*}
+
+Properties: 
+
+1. A bandlimited process can be sampled: (Shannon Sampling Theorem)
+\useshortskip \begin{equation*}
+    \begin{split}
+        \mathbf{x}(t+\tau) & = (L[\mathbf{x}(t)] \; with \; H(\omega) = e^{j\omega t}) \\[-3pt]
+        & = \sum^{\infty}_{n=0}\mathbf{x}^{(n)}(t)\frac{\tau^n}{n!}\\[-8pt]
+    \end{split}
+\end{equation*}
+Where $x^{(n)}(t)$ means the $n$-th order derivatives of x(t).
+
+2. A bandlimited process is continuous and smooth. 
+
+3. The expected value of the square of the change of the signal for a value $\tau$ is upper bounded: $\mathbb{E} \left\{ | \mathbf{x}(t+\tau) - \mathbf{x}(t)|^2 \right\} \leq \sigma^2\tau^2R_{xx}(0)$. $\tau$ term: For a small time difference, the signal does not change much. $\sigma$ term is the bandwidth. If a signal has a narrow band, the change in the signal is also gonna be relatively small. Vice Versa. $R_{xx}$ term is the variance of the signal.
+
+
+\bulletPoint{Shannon Sampling Theorem}: When a signal is bandlimited, the Shannon Sampling Theorem provides a method to perfectly reconstruct the original signal from its samples, if the sampling rate is greater than twice the bandwidth of the signal, which is also known as the Nyquist criterion. The continuous-time bandlimited signal can be represented as an infinite sum of its samples each scaled by a sinc function.
+\useshortskip \begin{equation*}
+    \begin{split}
+        x(\tau) = \sum^{\infty}_{n=-\infty}x(nT)\cdot \frac{\sin[\sigma(\tau - nT)]}{\sigma(\tau-nT)}, t=0\\[-7pt]
+    \end{split}
+\end{equation*}
+Where $x(\tau)$ is the reconstructed bandlimited signal, $x(nT)$ is the samples of the signal taken at intervals of $T$, $T = \frac{1}{f_s}$ is the sampling period, $\sin \ldots$ represents an ideal low-pass filter impulse response, $n$ is an integer that indexes the samples.
+
+
+\bulletPoint{Matched Filter}: A matched filter is a signal processing technique designed to maximize the signal-to-noise ratio (SNR) in the presence of noise by finding suitable h(t).
+\useshortskip \begin{equation*}
+    \begin{split}
+        SNR = r^2 = \frac{|y_f(t_0)|^2}{\mathbb{E}\{\mathbf{y}^2_v(t_0)\}}\\[-5pt]
+    \end{split}
+\end{equation*}
+
+Applying to colored noise: 
+\useshortskip \begin{equation*}
+    r^2\leq \int^{+\infty}_{-\infty}\frac{|F(\omega)|^2}{S_{vv}(\omega)}\frac{d\omega}{2\pi}
+\end{equation*}
+
+Condition that the equality holds:
+\useshortskip \begin{equation*}
+    \begin{split}
+& k\left[ \frac{F(\omega)}{\sqrt{S_{vv}(\omega)}}e^{j\omega t_0} \right]^* = \sqrt{S_{vv}(\omega)}H(\omega) \\
+&OR\\[-5pt]
+& H(\omega) = k\frac{F^*(\omega)}{S_{vv}(\omega)}e^{-j\omega t_0}\\[-5pt]
+\end{split}
+\end{equation*}
+
+
+\bulletPoint{Markov Chain}
+Properties: All outgoing transitions: $\sum_j \pi_{ij} [n_1, n_2]=1$. All incoming transitions: $\sum_i p_i[k]\pi_{ij}[k,n]=p_j[n]$. Where $p_i[n] = P\{\mathbf{x}_n=a_i\}$ is the state probabilities, and $\pi_{ij}[n_1,n_2] = P\{\mathbf{x}_{n_2}=a_j|\mathbf{x}_{n_j}=a_i\}$.
+
+
+\bulletPoint{Chapman Kolmogoroff equation}: For any $n_1<n_2<n_3$,
+\useshortskip \begin{equation*}
+    \begin{split}
+        \pi_{ij}[n_1, n_3] = \sum_r \pi_{ir}[n_1,n_2]\pi_{rj}[n_2,n_3]\\[-8pt]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Homogeneous process}: A process is called a homogeneous process if the transition probabilities are invariant to a shift,
+\useshortskip \begin{equation*}
+    \begin{split}
+        & \pi_{ij}[n_1,n_2]=\pi_{ij}[m], \; \text{where } m=n_2-n_1\\
+        & \text{Then, CK equation is }\pi_{ij}[n+k] = \sum_r\pi_{ir}[k]\pi_{rj}[n]\\[-7pt]
+        & k=n_2-n_1, n=n_3-n_2\\[-7pt]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Stationary Markoff Chain}: If $P[2]=P[1]=P$ $\Longrightarrow P[n]=P, \forall n$. Or P is an eigenvector of the transition matrix. 
+
+
+\bulletPoint{Integration by Parts}
+\useshortskip \begin{equation*}
+\begin{split}
+        & \int^b_a u(x) v'(x)dx = \\[-5pt]
+        & [u(x)v(x)]^b_a - \int^b_a u'(x) v(x) dx
+\end{split}
+\end{equation*}
+
+\bulletPoint{Trigonometry Function}
+\useshortskip \begin{equation*}
+\begin{split}
+        & \sin(\alpha \pm \beta) = \sin \alpha \cos \beta \pm \cos \alpha \sin \beta \\[-3pt]
+        & \cos(\alpha \pm \beta) = \cos \alpha \cos \beta \mp \sin \alpha \sin \beta \\[-3pt]
+        & \tan(\alpha \pm \beta) = \frac{\tan \alpha \pm \tan \beta}{1 \mp \tan \alpha \tan \beta}\\[-3pt]
+        & \sin \alpha \cos \beta = 0.5[\sin(\alpha + \beta) + \sin(\alpha - \beta)]\\
+        & \cos \alpha \sin \beta = 0.5[\sin(\alpha + \beta) - \sin(\alpha - \beta)]\\
+        & \cos \alpha \cos \beta = 0.5[\cos(\alpha + \beta) + \cos(\alpha - \beta)]\\
+        & \sin \alpha \sin \beta = -0.5[\cos(\alpha + \beta) - \cos(\alpha - \beta)]\\[-3pt]
+        & \sin \alpha \pm \sin \beta = 2 \sin\frac{\alpha \pm \beta}{2} \cos\frac{\alpha \mp \beta}{2}\\[-3pt]
+        & \cos \alpha + \cos \beta = 2 \cos\frac{\alpha + \beta}{2} \cos\frac{\alpha - \beta}{2}\\[-3pt]
+        & \cos \alpha - \cos \beta = - 2 \sin\frac{\alpha + \beta}{2} \sin\frac{\alpha - \beta}{2}\\[-9pt]
+\end{split}
+\end{equation*}
+
+
+\bulletPoint{Convolution}:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & f(t) * g(t) = \int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau\\[-10pt]
+    \end{split}
+\end{equation*}
+
+\bulletPoint{Taylor Expansion}
+\useshortskip \begin{equation*}
+    \begin{split}
+        & f(x)= \sum^{\infty}_{n=0}\frac{f^{(n)}(a)}{n!}(x-a)^n\\[-3pt]
+        & e^x=\sum^{\infty}_{n=0}\frac{x^n}{n!}; \sin x = \sum^{\infty}_{n=0}\frac{(-1)^n}{(2n+1)!}x^{2n+1}\\[-3pt]
+        & \frac{1}{1-x}=\sum^{\infty}_{n=0}x^n; \frac{1}{(1-x)^2} = \sum^{\infty}_{n=1}nx^{n-1}\\[-3pt]
+        & \cos x = \sum^{\infty}_{n=0}\frac{(-1)^n}{(2n)!}x^{2n}; ln(1-x) = \sum^{\infty}_{n=1}\frac{x^n}{-n}\\[-3pt]
+        & \frac{1}{1-ax^{-1}} = \sum^\infty_{n=0}a^nx^{-n} = \sum^\infty_{n=0}a^{|n|}x^{-n}; \\[-3pt]
+        & \frac{ax}{1-ax} = \frac{1}{1-ax} - 1 = \sum^\infty_{n=1}a^n x^n\\[-3pt]
+        & \left[\frac{1}{1-az^{-1}}+\frac{az}{1-az}\right]=\sum^\infty_{n=-\infty}a^{|n|}z^{-n}\\[-8pt]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Fourier Definition}:
+\useshortskip \begin{equation*}
+    \begin{split}
+        F(s) = \int^\infty_0 f(t)e^{-(\sigma + j \omega)t}dt\\[-8pt]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Fourier Transformation and Inverse FT}:
+
+FT:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & y_f(t) = \int^{\infty}_{-\infty}f(t-\alpha)h(\alpha)d\alpha\\[-5pt]
+        & \xrightarrow{FT} Y_f(\omega) = F(\omega)H(\omega)\\[-5pt]
+    \end{split}
+\end{equation*}
+
+RFT:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & Y_f(\omega) = F(\omega)H(\omega) \xrightarrow{RFT}\\[-5pt]
+        & y_f(t) = \int^{\infty}_{-\infty}F(\omega)H(\omega)e^{j\omega t}\frac{d\omega}{2\pi}\\[-5pt]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{P and C}:
+\useshortskip \begin{equation*}
+    \begin{split}
+        & P^m_n = \frac{n!}{(n-m)!}=n(n-1)\ldots(n-m+1);\\[-3pt]
+        & C^m_n = \frac{n!}{(n-m!)m!} = \frac{n(n-1)\cdot\cdot(n-m+1)}{m(m-1)\ldots1}\\[-3pt]
+        & C^m_n = C^{n-m}_n; C^{m-1}+C^m_n=C^m_{n+1}\\[-3pt]
+        & C^0_n+\ldots+C^m_n=2^n; C^r_r+\cdot\cdot+C^r_n=C^{r+1}_{n+1}\\[-5pt]
+        & \sum^k_{i=0}C^i_nC^{k-i}_m=C^k_{m+n}\\[-7pt]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Euler's Formula}: $e^{i\theta} = \cos \theta + i \sin \theta, e^{-i\theta} = \cos \theta - i \sin \theta$
+\useshortskip \begin{equation*}
+    \begin{split}
+        & \sin z = \frac{e^{iz} - e^{-iz}}{2i}; \cos z = \frac{e^{iz} + e^{-iz}}{2}\\[-3pt]
+        & e^z = e^x(\cos y + i\sin y)\\[-7pt]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Z-Transform}: $y[n] = x[n] + ay[n-1]$
+\useshortskip \begin{equation*}
+    \begin{split}
+        & h[n] = 
+        \begin{cases}
+            a^n, & n\geq 0\\
+            0, & n<0
+        \end{cases} \rightarrow
+        H(z) = \frac{1}{1-az^{-1}}\\[-3pt]
+        & H(z) = \sum^\infty_{-\infty}h[n]z^{-n}\\[-7pt]
+    \end{split}
+\end{equation*}
+
+
+\bulletPoint{Complex Number Tricks}: $(z_1 + z_2)* = z^*_1 + z^*_2; (z_1 \cdot z_2)^{*} = z^*_1 \cdot z^*_2; |z| = \sqrt{z * z^*}; Re(z)=\frac{z+z^*}{2}, Im(z)=\frac{z-z^*}{j2}; z^{-1}=\frac{z^*}{z\cdot z^*} = \frac{z^*}{|z|^2}$
+
+\bulletPoint{Z-Transform Tricks}: $H(z)=1+0.5z^{-1}$ means current input plus half of the previous input $s[n]=w[n]+0.5w[n-1]$, in which $z^{-1}$ means one unit time delay. $H(z)=\frac{1}{1-z^{-1}}$ corresponds to $s[n]=w[n]+s[n-1]$.
+
+\bulletPoint{Fourier Transform}:$[\delta(t), 1], [u(t), \pi\delta(\omega)+\frac{1}{j\omega}], [c, c\cdot 2\pi \delta(\omega)], [\sin(\omega_0 t), j\pi (\delta(\omega-\omega_0) - \delta(\omega+\omega_0))], [\cos(\omega_0 t), \pi (\delta(\omega-\omega_0) + \delta(\omega+\omega_0))], [e^{at}, \frac{1}{j\omega - a}\forall \Re(a)\leq 0], [e^{-j\omega_0 t}, \newline \pi (\delta(\omega - \omega_0) + \delta(\omega + \omega_0))]
+[e^{j\omega_0 t}, \pi (\delta(\omega + \omega_0) + \delta(\omega - \omega_0))], [af(t)+bh(t), aF(\omega)+bH(\omega)], [f(t-t_0), e^{-j\omega t_0}F(\omega)], [e^{j\omega_0 t}f(t), \newline F(\omega-\omega_0)], [f(at), \frac{1}{|a|}F(\frac{\omega}{a})], \newline [\frac{d^nf(t)}{dt^n},  (j\omega)^nF(\omega)],[\int^t_{-\infty}f(\tau)d\tau, \newline \frac{1}{h\omega}F(\omega)+\pi F(0)\delta(\omega)]$
+
+\bulletPoint{Z Transform}:$[\delta[n], 1], [u[n], \frac{1}{1 - z^{-1}}, \forall|z| > 1], [a^n u[n], \frac{1}{1 - az^{-1}}, \forall |z| > |a|], [n u[n], \newline \frac{z^{-1}}{(1 - z^{-1})^2}], [n^2 u[n], \frac{z^{-1}(1+z^{-1})}{(1 - z^{-1})^3}], [e^{an} u[n], \newline \frac{1}{1 - e^a z^{-1}}], [\sin(\omega_0 n) u[n], \newline \frac{z^{-1} \sin(\omega_0)}{1 - 2z^{-1} \cos(\omega_0) + z^{-2}}], [\cos(\omega_0 n) u[n], \newline \frac{1 - z^{-1} \cos(\omega_0)}{1 - 2z^{-1} \cos(\omega_0) + z^{-2}}], [a f[n] + b g[n], \newline a F(z) + b G(z)], [f[n - n_0], z^{-n_0} F(z)], \newline [f[n + n_0], z^{n_0} F(z) - \sum_{k=0}^{n_0-1} z^{n_0 - k} f[k]], \newline [a^n f[n],  F\left(\frac{z}{a}\right)], [n f[n], -z \frac{d}{dz} F(z)], [(f * g)[n], F(z) \cdot G(z)]$
+
+% \delta[n] \rightarrow 1
+% u[n] \rightarrow \frac{1}{1 - z^{-1}}, \quad \text{for } |z| > 1
+% a^n u[n] \rightarrow \frac{1}{1 - az^{-1}}, \quad \text{for } |z| > |a|
+% n u[n] \rightarrow \frac{z^{-1}}{(1 - z^{-1})^2}
+% n^2 u[n] \rightarrow \frac{z^{-1}(1+z^{-1})}{(1 - z^{-1})^3}
+% e^{an} u[n] \rightarrow \frac{1}{1 - e^a z^{-1}}
+% \sin(\omega_0 n) u[n] \rightarrow \frac{z^{-1} \sin(\omega_0)}{1 - 2z^{-1} \cos(\omega_0) + z^{-2}}
+% \cos(\omega_0 n) u[n] \rightarrow \frac{1 - z^{-1} \cos(\omega_0)}{1 - 2z^{-1} \cos(\omega_0) + z^{-2}}
+% a f[n] + b g[n] \rightarrow a F(z) + b G(z)
+% f[n - n_0] \rightarrow z^{-n_0} F(z)
+% f[n + n_0] \rightarrow z^{n_0} F(z) - \sum_{k=0}^{n_0-1} z^{n_0 - k} f[k]
+% a^n f[n] \rightarrow F\left(\frac{z}{a}\right)
+% n f[n] \rightarrow -z \frac{d}{dz} F(z)
+% (f * g)[n] \rightarrow F(z) \cdot G(z)
+
+\end{multicols*}
+
+\end{document}
